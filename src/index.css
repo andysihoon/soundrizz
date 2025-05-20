@@ -1,0 +1,177 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --neon-blue: #00f3ff;
+  --neon-pink: #ff00a0;
+  --neon-yellow: #ffff00;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  @apply bg-gray-900;
+}
+
+.bg-cyberpunk-bg {
+  background-color: #080b12;
+  background-image: 
+    radial-gradient(circle at 50% 50%, rgba(0, 243, 255, 0.05) 0%, transparent 70%),
+    linear-gradient(0deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.2) 100%),
+    repeating-linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0) 0,
+      rgba(0, 0, 0, 0) 49px,
+      rgba(255, 255, 0, 0.05) 50px,
+      rgba(255, 255, 0, 0.05) 51px
+    ),
+    repeating-linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0) 0,
+      rgba(0, 0, 0, 0) 49px,
+      rgba(0, 243, 255, 0.03) 50px,
+      rgba(0, 243, 255, 0.03) 51px
+    );
+}
+
+.cyberpunk-card {
+  @apply relative bg-gray-900/80 backdrop-blur-sm p-4 md:p-6 rounded-md border border-gray-800 overflow-hidden;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.4), 0 0 5px rgba(0, 243, 255, 0.2);
+}
+
+.cyberpunk-card::before {
+  content: '';
+  @apply absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-neon-blue via-neon-pink to-neon-yellow;
+}
+
+.cyberpunk-button {
+  @apply flex items-center gap-2 font-mono px-4 py-2 rounded text-sm uppercase font-medium tracking-wider;
+  transition: all 0.2s ease-in-out;
+  position: relative;
+  box-shadow: 0 0 5px currentColor, inset 0 0 5px currentColor;
+}
+
+.bg-neon-blue {
+  background-color: var(--neon-blue);
+  color: #000;
+}
+
+.bg-neon-pink {
+  background-color: var(--neon-pink);
+  color: #000;
+}
+
+.bg-neon-yellow {
+  background-color: var(--neon-yellow);
+  color: #000;
+}
+
+.text-neon-blue {
+  color: var(--neon-blue);
+}
+
+.text-neon-pink {
+  color: var(--neon-pink);
+}
+
+.text-neon-yellow {
+  color: var(--neon-yellow);
+}
+
+.cyberpunk-meter {
+  @apply bg-gray-900/50 p-4 rounded-md border border-gray-800;
+}
+
+.status-item {
+  @apply flex justify-between items-center font-mono text-xs p-2 bg-black/30 rounded border border-gray-800;
+}
+
+.status-item .label {
+  @apply text-gray-400;
+}
+
+.status-item .value {
+  @apply text-gray-200;
+}
+
+.glitch-text {
+  position: relative;
+  text-shadow: 
+    0 0 10px var(--neon-blue),
+    0 0 20px var(--neon-blue),
+    0 0 40px var(--neon-blue);
+  animation: glitch 3s infinite alternate;
+}
+
+.status-pill {
+  @apply bg-black/50 px-2 py-1 rounded-full border border-gray-800 text-center;
+}
+
+.tech-pill {
+  @apply bg-black/50 px-3 py-2 rounded border border-gray-700 text-center text-neon-blue;
+  box-shadow: inset 0 0 5px rgba(0, 243, 255, 0.2);
+}
+
+@keyframes glitch {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+    text-shadow: 
+      0 0 10px var(--neon-blue),
+      0 0 20px var(--neon-blue),
+      0 0 40px var(--neon-blue),
+      0 0 80px var(--neon-pink);
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  20%, 24%, 55% {
+    text-shadow: none;
+    opacity: 0.8;
+    transform: scale(1);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.ripple-effect {
+  position: absolute;
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  pointer-events: none;
+  background: radial-gradient(
+    circle,
+    rgba(0, 243, 255, 0.15) 0%,
+    rgba(255, 0, 160, 0.15) 35%,
+    rgba(255, 255, 0, 0.15) 70%,
+    transparent 100%
+  );
+  animation: ripple 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  mix-blend-mode: screen;
+  backdrop-filter: blur(2px);
+}
+
+@keyframes ripple {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(4);
+    opacity: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .cyberpunk-card {
+    @apply p-3;
+  }
+}

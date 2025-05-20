@@ -12,8 +12,6 @@ Features include:
 
 - Custom themes, color palettes, and visual modes
 
-- Cyberpunk-inspired HUDs, glitch effects, and 3D cityscapes
-
 - Sync with live audio input, files, or streaming tools
 
 - Modular design for both performance and presentation
